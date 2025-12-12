@@ -14,7 +14,7 @@ function FormTodo({
   save
 }: FormTodoProps) {
 
-  const prioritys = ['Baixa', 'Média', 'Alta'];
+  const prioritys = ['baixa', 'media', 'alta'];
 
   return (
     <section className='container-form'>
@@ -47,6 +47,14 @@ function FormTodo({
                 <option key={i}>{p}</option>
               ))}
             </select>
+          </div>
+          <div className='input-form'>
+            <label>Tag</label>
+            <input
+              type='text'
+              placeholder='ex: trabalho | estudos | pessoal'
+              onChange={(e) => onChange({ ...todo, tag: e.target.value })}
+            />
           </div>
           <div className='input-form'>
             <label>Data</label>

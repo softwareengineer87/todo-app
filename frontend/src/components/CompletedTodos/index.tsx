@@ -1,41 +1,33 @@
 
+import { useTodo } from '@/data/hooks/useTodo';
 import './completed.css';
-import { IconTrash } from '@tabler/icons-react';
+import { Todo } from '@/models/Todo';
+import { CardTodo } from '../CardTodo';
 
-function CompletedTodos() {
+interface CompletedTodosProps {
+  todos: Todo[];
+}
+
+function CompletedTodos({ todos }: CompletedTodosProps) {
+
+  const completeds = todos.filter((todo: Todo) => todo.completed);
+
+  function restore() {
+    console.log('restaurado');
+  }
 
   return (
     <section className='container-completed'>
       <h3>Tarefas concluidas</h3>
-      <div className='completed'>
-        <div className='box-top'>
-          <h4>Criar tela de login</h4>
-          <span>28/10/2025</span>
-          <p className='priority'>alta</p>
-          <h5><IconTrash size={20} /></h5>
-          <button
-            className='finish'
-          >
-            concluir
-          </button>
-        </div>
-        <p>Criar tela de login para o sistema</p>
-      </div>
-
-      <div className='completed'>
-        <div className='box-top'>
-          <h4>Criar tela de login</h4>
-          <span>28/10/2025</span>
-          <p className='priority'>alta</p>
-          <h5><IconTrash size={20} /></h5>
-          <button
-            className='finish'
-          >
-            concluir
-          </button>
-        </div>
-        <p>Criar tela de login para o sistema</p>
-      </div>
+      {completeds.map((todo) => (
+        <CardTodo
+          title={todo.title}
+          date={todo.date}
+          priority={todo.priority}
+          description={todo.description}
+          onClick={restore}
+        />
+      ))}
     </section>
   );
 

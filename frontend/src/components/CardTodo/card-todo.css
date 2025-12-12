@@ -1,0 +1,74 @@
+.completed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #454242;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.completed.is-expiration {
+  border-right: .1rem solid indianred;
+}
+
+.completed .box-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+}
+
+.completed .box-top .priority {
+  padding: 0 .5rem;
+  border-radius: 1rem;
+  color: var(--bg);
+  font-size: 1vw;
+}
+
+.completed .box-top h5 {
+  color: var(--red);
+  cursor: pointer;
+}
+
+.completed .box-top .finish {
+  background-color: var(--blue);
+  padding: 0 1rem;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.completed p {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.high {
+  background-color: indianred;
+}
+
+.medium {
+  background-color: greenyellow;
+}
+
+.low {
+  background-color: aquamarine;
+}
+
+.completed .box-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.completed .box-bottom span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: greenyellow;
+}
+
+.expiration {
+  color: indianred;
+  font-size: 1.2rem;
+
+}
