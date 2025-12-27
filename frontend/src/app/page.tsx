@@ -25,10 +25,6 @@ export default function Home() {
     changeCompleted
   } = useTodo();
 
-  function createArray(n: number) {
-    return Array.from({ length: n }, (_, i) => i + 1);
-  }
-
   async function changePage(page: number) {
     setPage(page);
     console.log(page);
@@ -76,8 +72,7 @@ export default function Home() {
 
   useEffect(() => {
     getTodos();
-    console.log(page);
-  }, [setPage]);
+  }, [page, setPage, pagination]);
 
   return (
     <main className='container-main container'>

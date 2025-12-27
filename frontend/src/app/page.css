@@ -35,8 +35,10 @@
 
 .container-main .pagination {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 2rem;
+  padding: 1rem;
 }
 
 .container-main .pagination .icon {
@@ -52,6 +54,7 @@
 
 .pagination .numbers p {
   cursor: pointer;
+  padding: 1rem;
 }
 
 .numbers p.active {
