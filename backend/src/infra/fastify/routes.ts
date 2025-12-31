@@ -30,20 +30,22 @@ function routes(fastify: FastifyInstance, connection: DatabaseConnection) {
   fastify.post('/todos', async (request: FastifyRequest, reply: FastifyReply) => {
 
     try {
-      const { title, description, priority, tag, date
+      const { title, description, priority, tag, date, hour
       } = request.body as {
         title: string,
         description: string,
         priority: string,
         tag: string,
-        date: Date
+        date: Date,
+        hour: string
       };
       const inputTodo = {
         title,
         description,
         priority,
         tag,
-        date
+        date,
+        hour
       }
       const { todoId } = await createTodo.execute(inputTodo);
 

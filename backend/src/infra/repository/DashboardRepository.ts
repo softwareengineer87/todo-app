@@ -13,10 +13,10 @@ class DashboardRepositoryDatabase implements DashboardRepository {
 
   async createTodo(todo: Todo): Promise<void> {
     await this.connection.query(`INSERT INTO todos 
-      (todo_id, title, description, priority, completed, tag, date)
-      VALUES($1, $2, $3, $4, $5, $6, $7)`,
+      (todo_id, title, description, priority, completed, tag, date, hour)
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8)`,
       [todo.todoId, todo.title, todo.description,
-      todo.priority, todo.completed, todo.tag, todo.date]);
+      todo.priority, todo.completed, todo.tag, todo.date, todo.hour]);
   }
 
   async getTodoById(todoId: string): Promise<Todo> {
@@ -30,7 +30,8 @@ class DashboardRepositoryDatabase implements DashboardRepository {
       todo.priority,
       todo.completed,
       todo.tag,
-      todo.date
+      todo.date,
+      todo.hour
     );
   }
 

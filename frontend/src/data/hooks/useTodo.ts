@@ -30,7 +30,8 @@ function useTodo() {
           description: todo.description,
           priority: changePriority,
           tag: todo.tag,
-          date: todo.date
+          date: todo.date,
+          hour: todo.hour
         })
       });
       const data = await response.json();

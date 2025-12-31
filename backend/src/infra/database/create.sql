@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS todos
     completed boolean,
     tag character varying(50),
     date timestamp,
+    hour character varying(20),
     PRIMARY KEY (todo_id)
 );
 

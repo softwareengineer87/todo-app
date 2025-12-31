@@ -64,6 +64,14 @@ function FormTodo({
               onChange={(e) => onChange({ ...todo, date: e.target.value })}
             />
           </div>
+          <div className='input-form'>
+            <label>Hora</label>
+            <input
+              type='time'
+              placeholder='hora da tarefa'
+              onChange={(e) => onChange({ ...todo, hour: e.target.value })}
+            />
+          </div>
         </form>
         <button
           onClick={save}

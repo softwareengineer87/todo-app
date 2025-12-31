@@ -7,6 +7,7 @@ export type Todo = {
   completed?: boolean;
   tag: string;
   date: string;
+  hour: string;
 }
 
 type Pagination = {

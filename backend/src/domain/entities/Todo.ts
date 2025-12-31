@@ -9,6 +9,7 @@ class Todo {
   completed: boolean;
   tag: string;
   date: Date;
+  hour: string;
 
   constructor(
     todoId: string,
@@ -17,7 +18,8 @@ class Todo {
     priority: string,
     completed: boolean,
     tag: string,
-    date: Date
+    date: Date,
+    hour: string
   ) {
 
     if (title === undefined) {
@@ -33,6 +35,9 @@ class Todo {
     if (date === undefined) {
       throw new Error('A data é obrigatória.');
     }
+    if (hour === undefined || hour === '') {
+      throw new Error('A hora é obrigatória.');
+    }
 
     this.todoId = todoId;
     this.title = title;
@@ -41,6 +46,7 @@ class Todo {
     this.completed = completed;
     this.tag = tag;
     this.date = date;
+    this.hour = hour;
   }
 
   static create(
@@ -48,7 +54,8 @@ class Todo {
     description: string,
     priority: string,
     tag: string,
-    date: Date
+    date: Date,
+    hour: string
   ) {
     const todoId = uuidv4();
     const completed = false;
@@ -59,7 +66,8 @@ class Todo {
       priority,
       completed,
       tag,
-      date
+      date,
+      hour
     );
   }
 

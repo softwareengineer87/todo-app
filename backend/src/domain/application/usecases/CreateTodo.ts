@@ -11,7 +11,8 @@ class CreateTodo {
       input.description,
       input.priority,
       input.tag,
-      input.date
+      input.date,
+      input.hour
     );
 
     this.dashboardRepository.createTodo(todo);
@@ -31,6 +32,7 @@ type Input = {
   priority: string;
   tag: string;
   date: Date;
+  hour: string;
 }
 
 type Output = {

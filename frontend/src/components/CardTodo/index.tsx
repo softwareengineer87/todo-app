@@ -19,12 +19,18 @@ function CardTodo({
   deleteTodo
 }: CardTodoProps) {
 
+  const dt = new Date(todo.date);
+
   function checkExpiration() {
-    const now = Date.now();
-    return now > new Date(todo.date).getTime();
+    const today = new Date();
+    const todoHour = Number(todo.hour.split(':')[0]);
+    // const todoMinute = Number(todo.hour.split(':')[1]);
+    const resultDate = dt.getDate() < today.getDate();
+    const resultHour = (todoHour) < (today.getHours());
+    const result = resultDate || resultHour;
+    return result;
   }
 
-  const dt = new Date(todo.date);
 
   useEffect(() => {
     checkExpiration();
@@ -35,6 +41,7 @@ function CardTodo({
       <div className='box-top'>
         <h4>{todo.title}</h4>
         <span>{dt.toLocaleDateString()}</span>
+        <p>{todo.hour}hs</p>
         <p className={`priority 
           ${todo.priority === 'low' ? 'low' : todo.priority === 'medium' ? 'medium' : 'high'}`}
         >
