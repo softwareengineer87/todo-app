@@ -12,7 +12,9 @@ class CreateTodo {
       input.priority,
       input.tag,
       input.date,
-      input.hour
+      input.hour,
+      input.isRecurring,
+      input.recurringDates
     );
 
     this.dashboardRepository.createTodo(todo);
@@ -33,6 +35,8 @@ type Input = {
   tag: string;
   date: Date;
   hour: string;
+  isRecurring: boolean;
+  recurringDates: string[];
 }
 
 type Output = {

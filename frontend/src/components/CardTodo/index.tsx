@@ -1,39 +1,51 @@
 
 import {
   IconTrash,
-  IconTag
+  IconTag,
+  IconEdit
 } from '@tabler/icons-react';
 import './card-todo.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Todo } from '@/models/Todo';
 
 interface CardTodoProps {
   todo: Todo;
   onClick(): void;
   deleteTodo(todoId: string): void;
+  selectTodo(todo: Todo): void;
 }
 
 function CardTodo({
   todo,
   onClick,
-  deleteTodo
+  deleteTodo,
+  selectTodo
 }: CardTodoProps) {
+
+  const [isExpiration, setIsExpiration] = useState<boolean>(false);
 
   const dt = new Date(todo.date);
 
   function checkExpiration() {
+    let result: boolean;
     const today = new Date();
-    const todoHour = Number(todo.hour.split(':')[0]);
-    // const todoMinute = Number(todo.hour.split(':')[1]);
-    const resultDate = dt.getDate() < today.getDate();
-    const resultHour = (todoHour) < (today.getHours());
-    const result = resultDate || resultHour;
+    const resultDate = dt.getTime() < today.getTime();
+    const resultDay = dt.getDay() === today.getDay();
+    if (resultDate && !resultDay) {
+      result = true;
+    } else {
+      return false;
+    }
     return result;
   }
 
 
   useEffect(() => {
     checkExpiration();
+  }, []);
+
+  useEffect(() => {
+    console.log(checkExpiration());
   }, []);
 
   return (
@@ -47,6 +59,9 @@ function CardTodo({
         >
           {todo.priority === 'low' ? 'baixa' : todo.priority === 'medium' ? 'media' : 'alta'}
         </p>
+        <h6 onClick={() => selectTodo(todo)}>
+          <IconEdit size={20} />
+        </h6>
         <h5 onClick={() => deleteTodo(todo.todo_id!)}>
           <IconTrash size={20} />
         </h5>

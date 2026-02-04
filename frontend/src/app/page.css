@@ -61,3 +61,36 @@
   color: greenyellow;
   cursor: not-allowed;
 }
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.btn-new {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: greenyellow;
+  color: #333;
+  padding: .5rem 2rem;
+  cursor: pointer;
+  align-self: self-end;
+}
+
+.btn-cancell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: darkgray;
+  color: var(--text);
+  padding: .5rem 2rem;
+  cursor: pointer;
+}

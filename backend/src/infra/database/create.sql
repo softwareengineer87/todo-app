@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS todos
     tag character varying(50),
     date timestamp,
     hour character varying(20),
+    is_recurring boolean,
+    recurring_dates jsonb,
     PRIMARY KEY (todo_id)
 );
 

@@ -10,6 +10,8 @@ class Todo {
   tag: string;
   date: Date;
   hour: string;
+  isRecurring: boolean;
+  recurringDates: string[];
 
   constructor(
     todoId: string,
@@ -19,7 +21,9 @@ class Todo {
     completed: boolean,
     tag: string,
     date: Date,
-    hour: string
+    hour: string,
+    isRecurring: boolean,
+    recurringDates: string[]
   ) {
 
     if (title === undefined) {
@@ -47,6 +51,8 @@ class Todo {
     this.tag = tag;
     this.date = date;
     this.hour = hour;
+    this.isRecurring = isRecurring;
+    this.recurringDates = recurringDates;
   }
 
   static create(
@@ -55,7 +61,9 @@ class Todo {
     priority: string,
     tag: string,
     date: Date,
-    hour: string
+    hour: string,
+    isRecurring: boolean,
+    recurringDates: string[]
   ) {
     const todoId = uuidv4();
     const completed = false;
@@ -67,7 +75,9 @@ class Todo {
       completed,
       tag,
       date,
-      hour
+      hour,
+      isRecurring,
+      recurringDates
     );
   }
 
@@ -79,6 +89,14 @@ class Todo {
     const now = new Date().getTime();
     const isExpiration = this.date.getTime() < now;
     return isExpiration;
+  }
+
+  addRecurringDates(recurringDates: string[]) {
+    this.recurringDates = recurringDates;
+  }
+
+  changeRecurring() {
+    this.isRecurring = !this.isRecurring;
   }
 
 }

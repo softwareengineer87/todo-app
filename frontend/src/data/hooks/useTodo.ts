@@ -17,11 +17,44 @@ function useTodo() {
     }
   }
 
-  async function saveTodo(todo: Todo) {
+  async function saveTodo(todo: Partial<Todo>) {
     const changePriority = todo.priority === 'baixa' ? 'low' : todo.priority === 'media' ? 'medium' : 'high';
     try {
       const response = await fetch(`${baseURL}/todos`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: todo.title,
+          description: todo.description,
+          priority: changePriority,
+          tag: todo.tag,
+          date: todo.date,
+          hour: todo.hour
+        })
+      });
+      const data = await response.json();
+      if (data.statusCode === 500) {
+        setMessage(data.message);
+      }
+      if (response.ok) {
+        setMessage(data.message);
+      }
+
+      getTodos();
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function updateTodo(todo: Partial<Todo>) {
+    if (!todo) return;
+    const changePriority = todo.priority === 'baixa' ? 'low' : todo.priority === 'media' ? 'medium' : 'high';
+    try {
+      const response = await fetch(`${baseURL}/update-todos/${todo.todo_id!}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -90,6 +123,7 @@ function useTodo() {
     setTodos,
     deleteTodo,
     changeCompleted,
+    updateTodo,
     message
   }
 
